@@ -1,0 +1,5 @@
+{{ object.title }} <br/>
+{{ object.description }} <!-- As the *instance* is an object, *.* can be used here to get the fields -->
+{% if object.image %}
+    <img src='{{ object.image.url }}' class='img-fluid' />  
+{% endif %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h1>{{ object.title }}</h1>
+                {{ object.timestamp | timesince }} ago
+                <!--h3>{{ "Some sub title here" | title }}</h3 -->
+                {{ object.description | linebreaks }} <!-- As the *instance* is an object, *.* can be used here to get the fields -->
+               <!-- {% if object.image %}                
+                    <img src='{{ object.image.url }}' class='img-fluid' />
+                {% endif %} -->
+            </div>
+            <div class="col-12 col-md-6">
+                {% include 'products/snippets/update-cart.html' with product=object cart=cart %}
+                <!-- cart=cart goes through cart.products.all -->
+
+               <!-- This part of the code is handled in update-cart.html, as this makes more sense when emulated in the products portion
+                {% if object in cart.products.all %}
+                <!- cart in cart.products.all is as the one added in context in get_context_data in ProductDetailSlugView ->
+                    In cart <button class='btn btn-link'>Remove?</button>
+                {% else %}
+                    <button class='btn btn-success'>Add to cart</button>
+                {% endif %} -->
+            </div>
+        </div>
+    </div>
+
+    {% if object.image %}
+        <img src='{{ object.image.url }}' class='img-fluid' />  
+    {% endif %}
+{% endblock %}

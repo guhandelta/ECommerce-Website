@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='container'>
+        <div class='row'>
+            {% for obj in object_list %}
+                <div class='col'> 
+                    {{ forloop.counter }}
+                    {% include 'products/snippets/card.html' with instance=obj %}
+                    
+                    {% if forloop.counter|divisibleby:2 %}
+                        </div> </div><div class='row'><div class='col-12'><hr/></div>
+                        <!-- closing the column and row and creating a new one if forloop.counter is divisible by 2 -->
+                    {% else %}
+                        </div>
+                    {% endif %}
+               
+            {% endfor %}
+        </div>
+    </div>    
+{% endblock %}

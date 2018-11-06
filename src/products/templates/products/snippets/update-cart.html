@@ -1,0 +1,19 @@
+<form method='POST' action='{% url "carts:update" %}' class="form" >{% csrf_token %}
+<!--POST method is used here as to hide the db manipulations{adding/removing products...etc} from the user, so they can't play with it-->
+	<input type="hidden" name="product_id" value='{{ product.id }}' />
+	{% if in_cart %}
+
+		<button type='submit' class='btn btn-danger btn-sm'>Remove?</button>
+		 
+	{% else %}
+
+		{% if product in cart.products.all %}
+		<!--cart in cart.products.all is as the one added in context in get_context_data in ProductDetailSlugView-->
+		    In cart <button type='submit' class='btn btn-danger btn-sm'>Remove?</button>
+		{% else %}
+		    <button type='submit' class='btn btn-success btn-sm'>Add to cart</button>
+		{% endif %}
+
+	{% endif %}
+
+</form>
