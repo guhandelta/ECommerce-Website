@@ -57,7 +57,7 @@ def post_save_cart_total(sender, instance, created, *args, **kwargs): #Calculati
 			order_obj.update_total()
 
 post_save.connect(post_save_cart_total, sender=Cart)
-
+#The Signals have no problems, as far as I could see, the promblem is refering the Cart component
 def post_save_order(sender, instance, created, *args, **kwargs):
 	print('post_save_order')
 	print('Before if, created = %s' %created)
